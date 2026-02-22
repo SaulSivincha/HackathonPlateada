@@ -105,7 +105,7 @@ const planesData: PlanData[] = [
 
 /* ── Tarjeta de un plan con sus hitos ── */
 function PlanProyectoCard({ plan }: { plan: PlanData }) {
-  const [expanded, setExpanded] = useState(true)
+  const [expanded, setExpanded] = useState(false)
   const Icon = plan.icon
 
   const HITO_COMPLETADO = 1
@@ -285,7 +285,7 @@ export function ProyectoSimulado() {
 
   if (misPlanes.length === 0) {
     return (
-      <div className="mx-auto max-w-2xl px-4 py-16 text-center">
+      <div className="mx-auto max-w-2xl px-4 py-16 text-center animate-fade-in-up">
         <FolderOpen className="mx-auto mb-4 h-14 w-14 text-platinum-300" />
         <h1 className="text-2xl font-bold text-dark-teal-900">Aún no tienes proyectos</h1>
         <p className="mt-2 text-base text-platinum-500">
@@ -305,7 +305,7 @@ export function ProyectoSimulado() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 sm:py-12">
       {/* Header */}
-      <div className="mb-8">
+      <div className="animate-fade-in-up mb-8">
         <h1 className="text-2xl font-bold text-dark-teal-900">Tus proyectos</h1>
         <p className="mt-2 text-base text-platinum-500">
           {misPlanes.length === 1
@@ -316,8 +316,10 @@ export function ProyectoSimulado() {
 
       {/* Planes */}
       <div className="space-y-6 mb-8">
-        {misPlanes.map((plan) => (
-          <PlanProyectoCard key={plan.id} plan={plan} />
+        {misPlanes.map((plan, idx) => (
+          <div key={plan.id} className="animate-fade-in-up" style={{ animationDelay: `${100 + idx * 100}ms` }}>
+            <PlanProyectoCard plan={plan} />
+          </div>
         ))}
       </div>
 
@@ -325,7 +327,7 @@ export function ProyectoSimulado() {
         variant="outline"
         size="lg"
         onClick={() => navigateTo("dashboard")}
-        className="w-full border-border py-6 text-base text-dark-teal-700 hover:bg-dark-teal-50"
+        className="animate-fade-in-up delay-600 w-full border-border py-6 text-base text-dark-teal-700 hover:bg-dark-teal-50"
       >
         <Home className="mr-2 h-5 w-5" />
         Volver al inicio

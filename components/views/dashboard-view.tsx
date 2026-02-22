@@ -83,7 +83,7 @@ export function DashboardView() {
     <div className="mx-auto max-w-5xl px-4 py-8 sm:py-12">
 
       {/* ===== Saludo ===== */}
-      <div className="mb-10 text-center">
+      <div className="mb-10 text-center animate-fade-in-up">
         <h1 className="text-3xl font-bold text-dark-teal-900">
           Hola, {firstName}
         </h1>
@@ -94,13 +94,14 @@ export function DashboardView() {
 
       {/* ===== 4 tarjetas de resumen ===== */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
-        {secciones.map((sec) => {
+        {secciones.map((sec, idx) => {
           const Icon = sec.icon
           return (
             <button
               key={sec.titulo}
               onClick={() => navigateTo(sec.destino)}
-              className="flex flex-col items-start rounded-2xl bg-card p-6 shadow-sm ring-1 ring-border text-left transition-all hover:shadow-md hover:ring-dark-teal-300"
+              className="animate-fade-in-up flex flex-col items-start rounded-2xl bg-card p-6 shadow-sm ring-1 ring-border text-left transition-all hover:shadow-md hover:ring-dark-teal-300"
+              style={{ animationDelay: `${100 + idx * 100}ms` }}
             >
               <div className="flex items-center gap-4 mb-4">
                 <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-xl ${
@@ -129,7 +130,7 @@ export function DashboardView() {
 
       {/* ===== Cómo funciona — solo si es nuevo ===== */}
       {esNuevo && (
-        <section className="rounded-2xl bg-pale-oak-50 p-8 ring-1 ring-pale-oak-200">
+        <section className="animate-fade-in-up delay-600 rounded-2xl bg-pale-oak-50 p-8 ring-1 ring-pale-oak-200">
           <div className="flex items-center gap-3 mb-4">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-dark-teal-600 text-white">
               <Sparkles className="h-6 w-6" />
@@ -161,8 +162,8 @@ export function DashboardView() {
                 titulo: "Recibe entregables concretos",
                 desc: "Contrata un plan y recibe paso a paso lo que tu negocio necesita. Solo pagas por lo que recibes.",
               },
-            ].map((step) => (
-              <div key={step.paso} className="flex items-start gap-4">
+            ].map((step, stepIdx) => (
+              <div key={step.paso} className="animate-fade-in-up flex items-start gap-4" style={{ animationDelay: `${700 + stepIdx * 100}ms` }}>
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-dark-teal-600 text-white">
                   <span className="text-lg font-bold">{step.paso}</span>
                 </div>

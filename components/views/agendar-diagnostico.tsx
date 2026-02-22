@@ -32,15 +32,17 @@ function ReunionAgendadaCard({
   hora,
   onEntrar,
   onVolver,
+  onAgendarOtra,
 }: {
   fecha: string
   hora: string
   onEntrar: () => void
   onVolver: () => void
+  onAgendarOtra: () => void
 }) {
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 sm:py-12">
-      <div className="overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-border">
+      <div className="animate-fade-in-up overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-border">
 
         {/* Header */}
         <div className="bg-dark-teal-700 px-6 py-8 text-center">
@@ -55,12 +57,12 @@ function ReunionAgendadaCard({
 
         {/* Body */}
         <div className="px-6 py-7">
-          <p className="mb-6 text-center text-base leading-relaxed text-platinum-600">
+          <p className="animate-fade-in-up delay-100 mb-6 text-center text-base leading-relaxed text-platinum-600">
             Un especialista y un supervisor de ACTIVA 50+ revisaran tu negocio contigo y te propondran el mejor plan.
           </p>
 
           {/* Detalles */}
-          <div className="mb-6 space-y-4 rounded-xl bg-dark-teal-50 px-5 py-5">
+          <div className="animate-fade-in-up delay-200 mb-6 space-y-4 rounded-xl bg-dark-teal-50 px-5 py-5">
             <div className="flex items-center gap-3 text-base font-medium text-dark-teal-800">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-dark-teal-600 text-white">
                 <Calendar className="h-5 w-5" />
@@ -87,6 +89,13 @@ function ReunionAgendadaCard({
           >
             <Play className="h-5 w-5" />
             Entrar a la reunion
+          </button>
+          <button
+            onClick={onAgendarOtra}
+            className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border-2 border-dark-teal-200 bg-white py-4 text-base font-semibold text-dark-teal-700 transition-colors hover:bg-dark-teal-50"
+          >
+            <CalendarPlus className="h-5 w-5" />
+            Cambiar horario
           </button>
           <button
             onClick={onVolver}
@@ -182,7 +191,7 @@ export function AgendarDiagnostico() {
   if (planPreparando) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-8 sm:py-12">
-        <div className="overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-border">
+        <div className="animate-fade-in-up overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-border">
           {/* Header */}
           <div className="bg-dark-teal-700 px-6 py-8 text-center">
             <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/20">
@@ -199,7 +208,7 @@ export function AgendarDiagnostico() {
           {/* Body */}
           <div className="px-6 py-7">
             {/* Plan sugerido */}
-            <div className="mb-6 rounded-2xl bg-dark-teal-50 px-5 py-5">
+            <div className="animate-fade-in-up delay-100 mb-6 rounded-2xl bg-dark-teal-50 px-5 py-5">
               <div className="mb-4 flex items-center gap-4">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-dark-teal-600 text-white">
                   <PlanIcon className="h-7 w-7" />
@@ -225,7 +234,7 @@ export function AgendarDiagnostico() {
             {/* Botones */}
             <button
               onClick={() => navigateTo("plan-propuesta")}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-dark-teal-600 py-4 text-base font-bold text-white transition-colors hover:bg-dark-teal-700"
+              className="animate-fade-in-up delay-200 flex w-full items-center justify-center gap-2 rounded-xl bg-dark-teal-600 py-4 text-base font-bold text-white transition-colors hover:bg-dark-teal-700"
             >
               Ver detalle completo del plan
               <ArrowRight className="h-5 w-5" />
@@ -234,6 +243,9 @@ export function AgendarDiagnostico() {
             <button
               onClick={() => {
                 setPlanPreparando(false)
+                setReunionAgendada(null)
+                setConfirmed(false)
+                setSelectedSlot(null)
               }}
               className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border-2 border-dark-teal-200 bg-white py-4 text-base font-semibold text-dark-teal-700 transition-colors hover:bg-dark-teal-50"
             >
@@ -244,6 +256,9 @@ export function AgendarDiagnostico() {
             <button
               onClick={() => {
                 setPlanPreparando(false)
+                setReunionAgendada(null)
+                setConfirmed(false)
+                setSelectedSlot(null)
                 navigateTo("mis-planes")
               }}
               className="mt-4 w-full text-center text-base font-medium text-platinum-500 hover:text-dark-teal-600"
@@ -278,13 +293,18 @@ export function AgendarDiagnostico() {
         hora={hora}
         onEntrar={() => navigateTo("diagnostico-room")}
         onVolver={() => navigateTo("dashboard")}
+        onAgendarOtra={() => {
+          setReunionAgendada(null)
+          setConfirmed(false)
+          setSelectedSlot(null)
+        }}
       />
     )
   }
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 sm:py-12">
-      <div className="mb-8">
+      <div className="animate-fade-in-up mb-8">
         <span className="mb-3 inline-block rounded-full bg-dark-teal-50 px-4 py-1.5 text-base font-semibold text-dark-teal-700">
           Reunion gratuita
         </span>
@@ -303,13 +323,14 @@ export function AgendarDiagnostico() {
             key={i}
             disabled={!slot.available}
             onClick={() => setSelectedSlot(i)}
-            className={`flex w-full items-center gap-4 rounded-xl p-5 text-left transition-all ring-1 ${
+            className={`animate-fade-in-up flex w-full items-center gap-4 rounded-xl p-5 text-left transition-all ring-1 ${
               !slot.available
                 ? "cursor-not-allowed bg-muted text-platinum-300 ring-border"
                 : selectedSlot === i
                   ? "bg-dark-teal-50 ring-2 ring-dark-teal-500 shadow-sm"
                   : "bg-card ring-border hover:ring-dark-teal-200 hover:shadow-sm"
             }`}
+            style={{ animationDelay: `${100 + i * 80}ms` }}
           >
             <div
               className={`flex h-12 w-12 items-center justify-center rounded-xl ${
@@ -349,7 +370,7 @@ export function AgendarDiagnostico() {
       <button
         disabled={selectedSlot === null}
         onClick={handleConfirm}
-        className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-dark-teal-600 py-4 text-base font-bold text-white transition-colors hover:bg-dark-teal-700 disabled:opacity-40"
+        className="animate-fade-in-up delay-600 mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-dark-teal-600 py-4 text-base font-bold text-white transition-colors hover:bg-dark-teal-700 disabled:opacity-40"
       >
         Confirmar reunion
         <ArrowRight className="h-5 w-5" />

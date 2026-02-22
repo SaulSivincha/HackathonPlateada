@@ -358,7 +358,7 @@ export function MisPlanes() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 sm:py-12">
       {/* Header */}
-      <div className="mb-8">
+      <div className="animate-fade-in-up mb-8">
         <h1 className="text-2xl font-bold text-dark-teal-900">Nuestros planes</h1>
         <p className="mt-2 text-base text-platinum-500">
           Elige el plan que más se adapte a tu negocio. Puedes ver el detalle de cada uno antes de decidir.
@@ -373,14 +373,15 @@ export function MisPlanes() {
             const bAdq = planesAdquiridos.includes(b.id) ? 1 : 0
             return aAdq - bAdq
           })
-          .map((plan) => (
+          .map((plan, idx) => (
+          <div key={plan.id} className="animate-fade-in-up" style={{ animationDelay: `${100 + idx * 100}ms` }}>
           <PlanCard
-            key={plan.id}
             plan={plan}
             onAdquirir={handleAdquirir}
             isAdquirido={planesAdquiridos.includes(plan.id)}
             onVerAvance={() => navigateTo("proyecto-simulado")}
           />
+          </div>
         ))}
       </div>
 
@@ -388,7 +389,7 @@ export function MisPlanes() {
         variant="outline"
         size="lg"
         onClick={() => navigateTo("dashboard")}
-        className="w-full border-border py-6 text-base text-dark-teal-700 hover:bg-dark-teal-50"
+        className="animate-fade-in-up delay-700 w-full border-border py-6 text-base text-dark-teal-700 hover:bg-dark-teal-50"
       >
         <Home className="mr-2 h-5 w-5" />
         Volver al inicio

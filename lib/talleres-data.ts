@@ -1,5 +1,136 @@
 import type { TallerInfo } from "./app-context"
 
+export interface TallerMagistral {
+  id: string
+  title: string
+  subtitle: string
+  description: string
+  icon: string
+  instructor: string
+  instructorBio: string
+  duracion: string
+  formato: string
+  precio: string
+  precioAntes?: string
+  cupos: string
+  fecha: string
+  hora: string
+  temario: string[]
+  deliverables: string[]
+  testimonial?: { nombre: string; texto: string }
+}
+
+export const talleresMagistrales: TallerMagistral[] = [
+  {
+    id: "magistral-digital",
+    title: "Domina lo digital sin miedo",
+    subtitle: "Taller magistral intensivo",
+    description:
+      "En 3 horas transformamos tu presencia digital desde cero. Sales con Instagram, WhatsApp Business, Google Maps y tu primer catalogo digital funcionando. No necesitas saber nada de tecnologia, te guiamos paso a paso.",
+    icon: "instagram",
+    instructor: "Carlos Mendoza",
+    instructorBio: "Consultor digital con 12 anos ayudando a emprendedores +50 a digitalizarse. Ex Google for Startups mentor.",
+    duracion: "3 horas",
+    formato: "Virtual por Zoom (con grabacion incluida)",
+    precio: "S/ 49",
+    precioAntes: "S/ 89",
+    cupos: "20 participantes",
+    fecha: "Sabado 15 de marzo, 2026",
+    hora: "9:00 AM - 12:00 PM",
+    temario: [
+      "Tu perfil profesional de Instagram en 30 minutos",
+      "WhatsApp Business: catalogo, respuestas rapidas y etiquetas",
+      "Google Maps: que te encuentren sin pagar publicidad",
+      "Tu primer catalogo digital con Canva (plantilla incluida)",
+      "Sesion de preguntas y respuestas personalizada",
+    ],
+    deliverables: [
+      "Instagram de negocio configurado y con 3 publicaciones",
+      "WhatsApp Business con catalogo de productos listo",
+      "Perfil de Google Maps creado y verificado",
+      "Catalogo digital en PDF listo para compartir",
+      "Grabacion del taller para repasar cuando quieras",
+      "Grupo de WhatsApp de soporte por 30 dias",
+    ],
+    testimonial: {
+      nombre: "Rosa M., 58 anos — Pasteleria artesanal",
+      texto: "Yo pensaba que las redes no eran para mi. En 3 horas tenia todo funcionando y esa semana me llegaron 4 pedidos por Instagram.",
+    },
+  },
+  {
+    id: "magistral-ventas",
+    title: "Vende mas sin bajar tus precios",
+    subtitle: "Taller magistral de estrategia comercial",
+    description:
+      "Aprende a calcular tus precios correctamente, presentar tu valor sin miedo y cerrar mas ventas. Ideal para emprendedores que sienten que cobran poco o que les cuesta vender.",
+    icon: "calculator",
+    instructor: "Ana Lucia Torres",
+    instructorBio: "Especialista en ventas para pequenos negocios. 15 anos de experiencia en capacitacion comercial para emprendedores.",
+    duracion: "3 horas",
+    formato: "Virtual por Zoom (con grabacion incluida)",
+    precio: "S/ 49",
+    precioAntes: "S/ 89",
+    cupos: "20 participantes",
+    fecha: "Sabado 22 de marzo, 2026",
+    hora: "9:00 AM - 12:00 PM",
+    temario: [
+      "Por que tus precios actuales probablemente estan mal",
+      "Formula simple para calcular tu precio real (con ganancia)",
+      "Como presentar tu precio con seguridad y sin disculparte",
+      "Tecnicas para que el cliente diga SI sin regatear",
+      "Sesion practica: calcula tus precios en vivo",
+    ],
+    deliverables: [
+      "Calculadora de precios en Excel personalizada",
+      "Guia de argumentos de venta para tu negocio",
+      "Script de respuesta cuando el cliente dice 'esta caro'",
+      "Lista de precios profesional lista para imprimir",
+      "Grabacion del taller para repasar cuando quieras",
+      "Grupo de WhatsApp de soporte por 30 dias",
+    ],
+    testimonial: {
+      nombre: "Jorge P., 62 anos — Carpinteria",
+      texto: "Descubri que estaba cobrando 40% menos de lo que debia. Ahora mis clientes pagan sin dudar porque se presentar el valor de mi trabajo.",
+    },
+  },
+  {
+    id: "magistral-clientes",
+    title: "Consigue clientes todas las semanas",
+    subtitle: "Taller magistral de captacion",
+    description:
+      "Aprende un sistema simple para que cada semana lleguen clientes nuevos a tu negocio usando WhatsApp, recomendaciones y tu comunidad. Sin invertir en publicidad.",
+    icon: "message-circle",
+    instructor: "Patricia Rojas",
+    instructorBio: "Especialista en marketing local. Ha ayudado a mas de 200 emprendedores +50 a llenar sus agendas.",
+    duracion: "3 horas",
+    formato: "Virtual por Zoom (con grabacion incluida)",
+    precio: "S/ 49",
+    precioAntes: "S/ 89",
+    cupos: "20 participantes",
+    fecha: "Sabado 29 de marzo, 2026",
+    hora: "9:00 AM - 12:00 PM",
+    temario: [
+      "Los 3 canales que ya tienes y no estas aprovechando",
+      "Como pedir recomendaciones sin que sea incomodo",
+      "WhatsApp como herramienta de ventas (no de spam)",
+      "Tu rutina semanal de captacion en 30 minutos al dia",
+      "Sesion practica: arma tu plan de esta semana",
+    ],
+    deliverables: [
+      "Plan de captacion semanal personalizado",
+      "Plantillas de mensajes para WhatsApp listas para usar",
+      "Guia de como pedir y usar recomendaciones",
+      "Calendario mensual de acciones comerciales",
+      "Grabacion del taller para repasar cuando quieras",
+      "Grupo de WhatsApp de soporte por 30 dias",
+    ],
+    testimonial: {
+      nombre: "Maria L., 55 anos — Costura y arreglos",
+      texto: "Antes esperaba que los clientes llegaran solos. Ahora cada lunes ya tengo mi agenda de la semana llena solo con WhatsApp y mis vecinas.",
+    },
+  },
+]
+
 export const talleres: TallerInfo[] = [
   {
     id: 1,
