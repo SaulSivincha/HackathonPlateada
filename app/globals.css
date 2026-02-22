@@ -1,0 +1,166 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* ACTIVA 50+ Color System */
+  /* Primary: dark-teal */
+  --background: #f7f4ee;
+  --foreground: #0b2328;
+  --card: #ffffff;
+  --card-foreground: #0b2328;
+  --popover: #ffffff;
+  --popover-foreground: #0b2328;
+  --primary: #2b8da1;
+  --primary-foreground: #ffffff;
+  --secondary: #efe9dc;
+  --secondary-foreground: #154751;
+  --muted: #f0f3f5;
+  --muted-foreground: #526a7a;
+  --accent: #16e9df;
+  --accent-foreground: #042f2d;
+  --destructive: #c3473c;
+  --destructive-foreground: #ffffff;
+  --border: #e0e7eb;
+  --input: #e0e7eb;
+  --ring: #36b1c9;
+  --chart-1: #36b1c9;
+  --chart-2: #16e9df;
+  --chart-3: #ad9052;
+  --chart-4: #c3473c;
+  --chart-5: #668599;
+  --radius: 0.75rem;
+
+  /* Custom ACTIVA tokens */
+  --teal-50: #ebf7fa;
+  --teal-100: #d7eff4;
+  --teal-500: #36b1c9;
+  --teal-600: #2b8da1;
+  --teal-700: #206a79;
+  --teal-800: #154751;
+  --teal-900: #0b2328;
+  --ocean-400: #44eee5;
+  --ocean-500: #16e9df;
+  --ocean-600: #11bbb2;
+  --oak-50: #f7f4ee;
+  --oak-100: #efe9dc;
+  --oak-200: #ded3ba;
+  --oak-500: #ad9052;
+  --wine-500: #c3473c;
+  --wine-600: #9c3930;
+  --platinum-100: #e0e7eb;
+  --platinum-300: #a3b6c2;
+  --platinum-500: #668599;
+  --platinum-800: #29353d;
+}
+
+@theme inline {
+  --font-sans: 'DM Sans', 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Dark Teal palette */
+  --color-dark-teal-50: #ebf7fa;
+  --color-dark-teal-100: #d7eff4;
+  --color-dark-teal-200: #aee0ea;
+  --color-dark-teal-300: #86d0df;
+  --color-dark-teal-400: #5ec0d4;
+  --color-dark-teal-500: #36b1c9;
+  --color-dark-teal-600: #2b8da1;
+  --color-dark-teal-700: #206a79;
+  --color-dark-teal-800: #154751;
+  --color-dark-teal-900: #0b2328;
+  --color-dark-teal-950: #07191c;
+
+  /* Deep Ocean palette */
+  --color-deep-ocean-50: #e8fdfc;
+  --color-deep-ocean-100: #d0fbf9;
+  --color-deep-ocean-200: #a2f6f2;
+  --color-deep-ocean-300: #73f2ec;
+  --color-deep-ocean-400: #44eee5;
+  --color-deep-ocean-500: #16e9df;
+  --color-deep-ocean-600: #11bbb2;
+  --color-deep-ocean-700: #0d8c86;
+  --color-deep-ocean-800: #095d59;
+  --color-deep-ocean-900: #042f2d;
+
+  /* Pale Oak palette */
+  --color-pale-oak-50: #f7f4ee;
+  --color-pale-oak-100: #efe9dc;
+  --color-pale-oak-200: #ded3ba;
+  --color-pale-oak-300: #cebd97;
+  --color-pale-oak-400: #bea674;
+  --color-pale-oak-500: #ad9052;
+  --color-pale-oak-600: #8b7341;
+
+  /* Dark Wine palette */
+  --color-dark-wine-50: #f9edeb;
+  --color-dark-wine-100: #f3dad8;
+  --color-dark-wine-400: #cf6c63;
+  --color-dark-wine-500: #c3473c;
+  --color-dark-wine-600: #9c3930;
+
+  /* Platinum palette */
+  --color-platinum-50: #f0f3f5;
+  --color-platinum-100: #e0e7eb;
+  --color-platinum-200: #c2ced6;
+  --color-platinum-300: #a3b6c2;
+  --color-platinum-500: #668599;
+  --color-platinum-600: #526a7a;
+  --color-platinum-800: #29353d;
+
+  /* Legacy tokens (keep for existing views) */
+  --color-teal-50: #ebf7fa;
+  --color-teal-100: #d7eff4;
+  --color-teal-500: #36b1c9;
+  --color-teal-600: #2b8da1;
+  --color-teal-700: #206a79;
+  --color-teal-800: #154751;
+  --color-teal-900: #0b2328;
+  --color-ocean-400: #44eee5;
+  --color-ocean-500: #16e9df;
+  --color-ocean-600: #11bbb2;
+  --color-oak-50: #f7f4ee;
+  --color-oak-100: #efe9dc;
+  --color-oak-200: #ded3ba;
+  --color-oak-500: #ad9052;
+  --color-wine-500: #c3473c;
+  --color-wine-600: #9c3930;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

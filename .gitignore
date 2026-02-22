@@ -1,0 +1,49 @@
+# Dependencias
+node_modules/
+
+# Lockfile (⚠️ NO ignores pnpm-lock.yaml si es un proyecto colaborativo)
+# pnpm-lock.yaml
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build / producción
+dist/
+build/
+.next/
+out/
+coverage/
+
+# Archivos temporales
+.tmp/
+.temp/
+.cache/
+
+# Variables de entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de pruebas
+coverage/
+.nyc_output/
+
+# Archivos de TypeScript
+*.tsbuildinfo
+node_modules/
