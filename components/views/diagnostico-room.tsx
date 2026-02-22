@@ -27,7 +27,7 @@ const chatMessages = [
 ]
 
 export function DiagnosticoRoom() {
-  const { navigateTo, setReunionAgendada, selectedService, setPlanAsignado } = useApp()
+  const { navigateTo, setReunionAgendada, setSelectedService } = useApp()
   const [videoOn, setVideoOn] = useState(true)
   const [micOn, setMicOn] = useState(true)
   const [chatOpen, setChatOpen] = useState(false)
@@ -40,13 +40,13 @@ export function DiagnosticoRoom() {
     return () => clearInterval(timer)
   }, [meetingEnded])
 
-  // Al terminar, limpia la reunion y redirige a la vista de plan en preparacion
+  // Al terminar, limpia la reunion, sugiere un plan estándar y redirige
   useEffect(() => {
     if (!meetingEnded) return
     setReunionAgendada(null)
-    setPlanAsignado(selectedService || "digital")
+    setSelectedService("digital")
     navigateTo("plan-preparando")
-  }, [meetingEnded, navigateTo, setReunionAgendada, setPlanAsignado, selectedService])
+  }, [meetingEnded, navigateTo, setReunionAgendada, setSelectedService])
 
   const formatTime = useCallback((secs: number) => {
     const m = Math.floor(secs / 60).toString().padStart(2, "0")

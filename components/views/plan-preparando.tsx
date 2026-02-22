@@ -5,8 +5,13 @@ import { ArrowRight, Clock, CheckCircle2, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function PlanPreparando() {
-  const { navigateTo, userName } = useApp()
+  const { navigateTo, userName, setPlanPreparando } = useApp()
   const firstName = userName.split(" ")[0]
+
+  const handleContinuar = () => {
+    setPlanPreparando(true)
+    navigateTo("agendar-diagnostico")
+  }
 
   return (
     <div className="flex min-h-[calc(100vh-60px)] items-center justify-center px-4 py-12">
@@ -55,10 +60,10 @@ export function PlanPreparando() {
             </div>
 
             <Button
-              onClick={() => navigateTo("dashboard")}
+              onClick={handleContinuar}
               className="w-full bg-dark-teal-600 py-5 text-base font-semibold text-primary-foreground hover:bg-dark-teal-700"
             >
-              Volver a mi inicio
+              Ver mi plan personalizado
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>

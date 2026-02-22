@@ -8,6 +8,7 @@ export type AppView =
   | "login"
   | "home"
   | "dashboard"
+  | "talleres"
   | "taller-confirmacion"
   | "taller-room"
   | "conversion-card"
@@ -62,8 +63,8 @@ interface AppContextType {
   setReunionAgendada: (r: ReunionAgendada | null) => void
   contratoFirmado: boolean
   setContratoFirmado: (v: boolean) => void
-  planAsignado: string | null
-  setPlanAsignado: (v: string | null) => void
+  planesAdquiridos: string[]
+  agregarPlan: (v: string) => void
   talleresInscritos: number[]
   inscribirseTaller: (id: number) => void
   talleresAgendados: number[]
@@ -89,7 +90,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [selectedService, setSelectedService] = useState<string | null>(null)
   const [reunionAgendada, setReunionAgendada] = useState<ReunionAgendada | null>(null)
   const [contratoFirmado, setContratoFirmado] = useState(false)
-  const [planAsignado, setPlanAsignado] = useState<string | null>(null)
+  const [planesAdquiridos, setPlanesAdquiridos] = useState<string[]>([])
+
+  const agregarPlan = (id: string) => {
+    setPlanesAdquiridos((prev) => (prev.includes(id) ? prev : [...prev, id]))
+  }
   const [talleresInscritos, setTalleresInscritos] = useState<number[]>([])
   const [talleresAgendados, setTalleresAgendados] = useState<number[]>([])
   const [planPreparando, setPlanPreparando] = useState(false)
@@ -129,7 +134,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setReunionAgendada(null)
     setContratoFirmado(false)
     setSelectedService(null)
-    setPlanAsignado(null)
+    setPlanesAdquiridos([])
     setTalleresInscritos([])
     setTalleresAgendados([])
     setPlanPreparando(false)
@@ -160,8 +165,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setReunionAgendada,
         contratoFirmado,
         setContratoFirmado,
-        planAsignado,
-        setPlanAsignado,
+        planesAdquiridos,
+        agregarPlan,
         talleresInscritos,
         inscribirseTaller,
         talleresAgendados,

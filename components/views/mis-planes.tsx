@@ -13,6 +13,10 @@ import {
   GraduationCap,
   ChevronDown,
   ChevronUp,
+  MessageCircle,
+  Users,
+  CheckCircle2,
+  FolderOpen,
 } from "lucide-react"
 
 interface Hito {
@@ -138,60 +142,185 @@ const planes: Plan[] = [
     sesionFinal:
       "Sesión de capacitación (1 hora) para que aprendas a editar productos, cambiar fotos y actualizar información en tu web.",
   },
+  {
+    id: "whatsapp",
+    titulo: "Plan Ventas por WhatsApp",
+    descripcion: "Mensajes de venta, catálogo, seguimiento y automatización básica",
+    icon: MessageCircle,
+    precio: "S/ 240",
+    hitos: [
+      {
+        numero: 1,
+        titulo: "Guión de ventas personalizado",
+        entregable: "Documento con mensajes de presentación, seguimiento y cierre adaptados a tu negocio",
+        duracion: "Semana 1",
+      },
+      {
+        numero: 2,
+        titulo: "Catálogo de WhatsApp Business",
+        entregable: "Catálogo digital configurado con tus productos, precios y fotos reales",
+        duracion: "Semana 1-2",
+      },
+      {
+        numero: 3,
+        titulo: "Respuestas automáticas y etiquetas",
+        entregable: "WhatsApp Business con mensajes automáticos de bienvenida, ausencia y seguimiento configurados",
+        duracion: "Semana 2-3",
+      },
+      {
+        numero: 4,
+        titulo: "Lista de difusión y primeras ventas",
+        entregable: "Lista de difusión activa + acompañamiento en las primeras 3 conversaciones de venta",
+        duracion: "Semana 3-4",
+      },
+    ],
+    sesionFinal:
+      "Sesión de capacitación (1 hora) para que aprendas a gestionar conversaciones, usar etiquetas y hacer seguimiento de clientes por tu cuenta.",
+  },
+  {
+    id: "clientes",
+    titulo: "Plan Fidelización de Clientes",
+    descripcion: "Base de clientes, seguimiento, reseñas y programa de referidos",
+    icon: Users,
+    precio: "S/ 290",
+    hitos: [
+      {
+        numero: 1,
+        titulo: "Base de datos de clientes",
+        entregable: "Plantilla organizada con nombre, contacto, última compra e historial de cada cliente",
+        duracion: "Semana 1",
+      },
+      {
+        numero: 2,
+        titulo: "Estrategia de seguimiento post-venta",
+        entregable: "Protocolo de mensajes para después de cada venta: agradecimiento, consulta de satisfacción y recompra",
+        duracion: "Semana 2",
+      },
+      {
+        numero: 3,
+        titulo: "Gestión de reseñas en Google",
+        entregable: "Perfil de Google Business configurado y guía para pedir reseñas a tus clientes actuales",
+        duracion: "Semana 2-3",
+      },
+      {
+        numero: 4,
+        titulo: "Programa de referidos",
+        entregable: "Diseño de un incentivo sencillo para que tus clientes te recomienden + tarjeta de referido lista para compartir",
+        duracion: "Semana 3-4",
+      },
+    ],
+    sesionFinal:
+      "Sesión de capacitación (1 hora) para que aprendas a mantener tu base de clientes activa, pedir reseñas y gestionar tu programa de referidos.",
+  },
 ]
 
-function PlanCard({ plan }: { plan: Plan }) {
+function PlanCard({ plan, onAdquirir, isAdquirido, onVerAvance }: { plan: Plan; onAdquirir: (id: string) => void; isAdquirido: boolean; onVerAvance: () => void }) {
   const [expanded, setExpanded] = useState(false)
   const Icon = plan.icon
 
   return (
-    <div className="overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-border">
+    <div className={`overflow-hidden rounded-2xl shadow-sm ring-1 transition-all ${
+      isAdquirido
+        ? "bg-success-50/60 ring-success-300 opacity-70"
+        : "bg-card ring-border"
+    }`}>
+      {/* Badge plan adquirido */}
+      {isAdquirido && (
+        <div className="flex items-center gap-2 bg-success-100 px-5 py-2.5">
+          <CheckCircle2 className="h-5 w-5 text-success-600" />
+          <span className="text-sm font-bold text-success-700">Ya tienes este plan contratado</span>
+        </div>
+      )}
+
       {/* Plan header */}
-      <div className="flex items-center gap-4 p-5">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-dark-teal-50 text-dark-teal-600">
-          <Icon className="h-6 w-6" />
+      <div className="flex items-start gap-4 p-5">
+        <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-xl ${
+          isAdquirido ? "bg-success-100 text-success-600" : "bg-dark-teal-50 text-dark-teal-600"
+        }`}>
+          <Icon className="h-7 w-7" />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-dark-teal-900">{plan.titulo}</h3>
-          <p className="text-sm text-platinum-500">{plan.descripcion}</p>
+          <div className="flex items-start justify-between gap-3 flex-wrap">
+            <h3 className="text-lg font-bold text-dark-teal-900 leading-snug">{plan.titulo}</h3>
+            <span className={`shrink-0 rounded-full px-4 py-1.5 text-base font-bold text-white ${
+              isAdquirido ? "bg-success-500" : "bg-dark-teal-600"
+            }`}>
+              {plan.precio}
+            </span>
+          </div>
+          <p className="mt-1 text-base text-platinum-500">{plan.descripcion}</p>
         </div>
-        <div className="flex flex-col items-end gap-2 shrink-0">
-          <span className="rounded-full bg-dark-teal-600 px-3 py-1 text-sm font-bold text-white">
-            {plan.precio}
-          </span>
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className="flex items-center gap-1 text-xs font-semibold text-dark-teal-600 hover:text-dark-teal-800"
-          >
-            {expanded ? "Ocultar hitos" : "Ver hitos"}
-            {expanded ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
-          </button>
-        </div>
+      </div>
+
+      {/* Botones de acción */}
+      <div className="flex gap-3 px-5 pb-5">
+        {/* Ver qué incluye — botón secundario */}
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-dark-teal-200 bg-white py-4 text-base font-semibold text-dark-teal-700 transition-colors hover:bg-dark-teal-50"
+        >
+          {expanded ? (
+            <>
+              <ChevronUp className="h-5 w-5" />
+              Ocultar detalle
+            </>
+          ) : (
+            <>
+              <ChevronDown className="h-5 w-5" />
+              Ver qué incluye
+            </>
+          )}
+        </button>
+
+        {/* Adquirir / Ver avance — botón principal */}
+        <button
+          onClick={() => isAdquirido ? onVerAvance() : onAdquirir(plan.id)}
+          className={`flex flex-1 items-center justify-center gap-2 rounded-xl py-4 text-base font-bold text-white transition-colors ${
+            isAdquirido
+              ? "bg-success-500 hover:bg-success-600"
+              : "bg-dark-teal-600 hover:bg-dark-teal-700"
+          }`}
+        >
+          {isAdquirido ? (
+            <>
+              <FolderOpen className="h-5 w-5" />
+              Ver mi avance
+            </>
+          ) : (
+            <>
+              Quiero este plan
+              <ArrowRight className="h-5 w-5" />
+            </>
+          )}
+        </button>
       </div>
 
       {/* Hitos expandibles */}
       {expanded && (
-        <div className="border-t border-border px-5 pb-5 pt-4 space-y-3">
+        <div className="border-t border-border px-5 pt-5 pb-5 space-y-4">
+          <p className="text-sm font-semibold uppercase tracking-wide text-dark-teal-600">
+            Lo que recibirás paso a paso:
+          </p>
           {plan.hitos.map((hito) => (
             <div
               key={hito.numero}
               className="overflow-hidden rounded-xl ring-1 ring-border"
             >
-              <div className="flex items-start gap-3 p-4">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-dark-teal-600 text-sm font-bold text-white">
+              <div className="flex items-start gap-4 p-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-dark-teal-600 text-base font-bold text-white">
                   {hito.numero}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 flex-wrap">
-                    <h4 className="font-semibold text-dark-teal-900 text-sm">{hito.titulo}</h4>
-                    <span className="shrink-0 rounded-full bg-dark-teal-50 px-2.5 py-0.5 text-xs font-medium text-dark-teal-700">
+                    <h4 className="font-bold text-dark-teal-900 text-base">{hito.titulo}</h4>
+                    <span className="shrink-0 rounded-full bg-dark-teal-50 px-3 py-1 text-sm font-medium text-dark-teal-700">
                       {hito.duracion}
                     </span>
                   </div>
-                  <div className="mt-2 flex items-start gap-2 rounded-lg bg-pale-oak-50 p-2.5">
-                    <Package className="mt-0.5 h-3.5 w-3.5 shrink-0 text-pale-oak-500" />
-                    <p className="text-xs leading-relaxed text-dark-teal-800">
-                      <span className="font-semibold">Entregable:</span>{" "}
+                  <div className="mt-2 flex items-start gap-2 rounded-lg bg-pale-oak-50 p-3">
+                    <Package className="mt-0.5 h-4 w-4 shrink-0 text-pale-oak-500" />
+                    <p className="text-sm leading-relaxed text-dark-teal-800">
+                      <span className="font-semibold">Lo que recibes:</span>{" "}
                       {hito.entregable}
                     </p>
                   </div>
@@ -203,12 +332,12 @@ function PlanCard({ plan }: { plan: Plan }) {
           {/* Sesión final */}
           <div className="rounded-xl bg-deep-ocean-50 p-4 ring-1 ring-deep-ocean-200">
             <div className="flex items-start gap-3">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-deep-ocean-500">
-                <GraduationCap className="h-4 w-4 text-dark-teal-900" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-deep-ocean-500">
+                <GraduationCap className="h-5 w-5 text-dark-teal-900" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-dark-teal-900">Sesión final de capacitación</h4>
-                <p className="mt-1 text-xs leading-relaxed text-dark-teal-700">{plan.sesionFinal}</p>
+                <h4 className="text-base font-bold text-dark-teal-900">Al final: te enseñamos a continuar solo</h4>
+                <p className="mt-1 text-sm leading-relaxed text-dark-teal-700">{plan.sesionFinal}</p>
               </div>
             </div>
           </div>
@@ -219,22 +348,39 @@ function PlanCard({ plan }: { plan: Plan }) {
 }
 
 export function MisPlanes() {
-  const { navigateTo } = useApp()
+  const { navigateTo, setSelectedService, planesAdquiridos } = useApp()
+
+  const handleAdquirir = (planId: string) => {
+    setSelectedService(planId)
+    navigateTo("plan-propuesta")
+  }
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 sm:py-12">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-dark-teal-900">Planes disponibles</h1>
-        <p className="mt-1 text-platinum-500">
-          Estos son los planes que ofrecemos. Cada uno incluye hitos con entregables claros y una sesión final de capacitación.
+        <h1 className="text-2xl font-bold text-dark-teal-900">Nuestros planes</h1>
+        <p className="mt-2 text-base text-platinum-500">
+          Elige el plan que más se adapte a tu negocio. Puedes ver el detalle de cada uno antes de decidir.
         </p>
       </div>
 
-      {/* Lista de planes */}
-      <div className="mb-10 space-y-4">
-        {planes.map((plan) => (
-          <PlanCard key={plan.id} plan={plan} />
+      {/* Lista de planes — los adquiridos van al final */}
+      <div className="mb-10 space-y-5">
+        {[...planes]
+          .sort((a, b) => {
+            const aAdq = planesAdquiridos.includes(a.id) ? 1 : 0
+            const bAdq = planesAdquiridos.includes(b.id) ? 1 : 0
+            return aAdq - bAdq
+          })
+          .map((plan) => (
+          <PlanCard
+            key={plan.id}
+            plan={plan}
+            onAdquirir={handleAdquirir}
+            isAdquirido={planesAdquiridos.includes(plan.id)}
+            onVerAvance={() => navigateTo("proyecto-simulado")}
+          />
         ))}
       </div>
 
@@ -242,9 +388,9 @@ export function MisPlanes() {
         variant="outline"
         size="lg"
         onClick={() => navigateTo("dashboard")}
-        className="w-full border-border text-dark-teal-700 hover:bg-dark-teal-50"
+        className="w-full border-border py-6 text-base text-dark-teal-700 hover:bg-dark-teal-50"
       >
-        <Home className="mr-2 h-4 w-4" />
+        <Home className="mr-2 h-5 w-5" />
         Volver al inicio
       </Button>
     </div>

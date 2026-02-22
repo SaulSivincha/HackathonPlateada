@@ -59,8 +59,8 @@ export function ConversionCard() {
           {/* Card body */}
           <div className="px-6 py-6">
             <p className="mb-5 text-center text-base leading-relaxed text-platinum-800">
-              En ACTIVA 50+ conectamos a emprendedores como tu con practicantes
-              universitarios que te ayudan con las tareas digitales y de gestion
+              En ACTIVA 50+ conectamos a emprendedores como tu con personal
+              especializado que te ayuda con las tareas digitales y de gestion
               que necesitas. Esto es lo que podemos hacer juntos:
             </p>
 

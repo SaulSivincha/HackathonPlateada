@@ -32,27 +32,6 @@
   --chart-5: #668599;
   --radius: 0.75rem;
 
-  /* Custom ACTIVA tokens */
-  --teal-50: #ebf7fa;
-  --teal-100: #d7eff4;
-  --teal-500: #36b1c9;
-  --teal-600: #2b8da1;
-  --teal-700: #206a79;
-  --teal-800: #154751;
-  --teal-900: #0b2328;
-  --ocean-400: #44eee5;
-  --ocean-500: #16e9df;
-  --ocean-600: #11bbb2;
-  --oak-50: #f7f4ee;
-  --oak-100: #efe9dc;
-  --oak-200: #ded3ba;
-  --oak-500: #ad9052;
-  --wine-500: #c3473c;
-  --wine-600: #9c3930;
-  --platinum-100: #e0e7eb;
-  --platinum-300: #a3b6c2;
-  --platinum-500: #668599;
-  --platinum-800: #29353d;
 }
 
 @theme inline {
@@ -98,35 +77,33 @@
   --color-dark-teal-700: #206a79;
   --color-dark-teal-800: #154751;
   --color-dark-teal-900: #0b2328;
-  --color-dark-teal-950: #07191c;
 
   /* Deep Ocean palette */
   --color-deep-ocean-50: #e8fdfc;
-  --color-deep-ocean-100: #d0fbf9;
   --color-deep-ocean-200: #a2f6f2;
   --color-deep-ocean-300: #73f2ec;
   --color-deep-ocean-400: #44eee5;
   --color-deep-ocean-500: #16e9df;
   --color-deep-ocean-600: #11bbb2;
   --color-deep-ocean-700: #0d8c86;
-  --color-deep-ocean-800: #095d59;
-  --color-deep-ocean-900: #042f2d;
 
   /* Pale Oak palette */
   --color-pale-oak-50: #f7f4ee;
-  --color-pale-oak-100: #efe9dc;
   --color-pale-oak-200: #ded3ba;
-  --color-pale-oak-300: #cebd97;
-  --color-pale-oak-400: #bea674;
   --color-pale-oak-500: #ad9052;
   --color-pale-oak-600: #8b7341;
 
   /* Dark Wine palette */
   --color-dark-wine-50: #f9edeb;
-  --color-dark-wine-100: #f3dad8;
-  --color-dark-wine-400: #cf6c63;
   --color-dark-wine-500: #c3473c;
-  --color-dark-wine-600: #9c3930;
+
+  /* Success Green palette */
+  --color-success-50: #f0faf4;
+  --color-success-100: #d6f0e1;
+  --color-success-300: #72c69e;
+  --color-success-500: #1f8c5a;
+  --color-success-600: #177047;
+  --color-success-700: #115535;
 
   /* Platinum palette */
   --color-platinum-50: #f0f3f5;

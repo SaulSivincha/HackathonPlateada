@@ -15,6 +15,7 @@ import { PlanPreparando } from "@/components/views/plan-preparando"
 import { ContratoDigital } from "@/components/views/contrato-digital"
 import { MisPlanes } from "@/components/views/mis-planes"
 import { ProyectoSimulado } from "@/components/views/proyecto-simulado"
+import { TalleresView } from "@/components/views/talleres-view"
 import { PracticanteRegistro } from "@/components/views/practicante-registro"
 import { PracticanteTallerRoom } from "@/components/views/practicante-taller-room"
 import { PracticantePostTaller } from "@/components/views/practicante-post-taller"
@@ -59,6 +60,7 @@ function AppShell() {
         {currentView === "contrato-digital" && <ContratoDigital />}
         {currentView === "mis-planes" && <MisPlanes />}
         {currentView === "proyecto-simulado" && <ProyectoSimulado />}
+        {currentView === "talleres" && <TalleresView />}
         {currentView === "practicante-registro" && <PracticanteRegistro />}
         {currentView === "practicante-post-taller" && <PracticantePostTaller />}
         {currentView === "practicante-proyecto" && <PracticanteProyecto />}
