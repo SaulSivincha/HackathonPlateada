@@ -34,9 +34,49 @@ interface Plan {
   precio: string
   hitos: Hito[]
   sesionFinal: string
+  opciones?: { cantidad: number; precio: string }[]
 }
 
 const planes: Plan[] = [
+  {
+    id: "identidad-visual",
+    titulo: "Identidad Visual",
+    descripcion: "Logo, paleta de colores y tipografía para tu negocio",
+    icon: Palette,
+    precio: "S/ 49",
+    hitos: [
+      {
+        numero: 1,
+        titulo: "Tu logo y paleta de colores",
+        entregable: "Logo profesional, paleta de colores y tipografía definida para tu marca",
+        duracion: "3-5 días",
+      },
+    ],
+    sesionFinal:
+      "Sesión de 20 minutos para explicarte cómo usar tu logo y paleta en cualquier material.",
+  },
+  {
+    id: "flyers",
+    titulo: "Pack de Flyers",
+    descripcion: "Flyers profesionales diseñados + plantillas editables en Canva",
+    icon: FileText,
+    precio: "Desde S/ 25",
+    opciones: [
+      { cantidad: 3, precio: "S/ 25" },
+      { cantidad: 6, precio: "S/ 45" },
+      { cantidad: 12, precio: "S/ 75" },
+    ],
+    hitos: [
+      {
+        numero: 1,
+        titulo: "Flyers diseñados + plantillas",
+        entregable: "Flyers profesionales listos para imprimir y compartir por WhatsApp o redes, más plantillas editables en Canva para que crees los tuyos",
+        duracion: "3-5 días",
+      },
+    ],
+    sesionFinal:
+      "Sesión de 20 minutos para enseñarte a editar las plantillas en Canva y crear tus propios flyers.",
+  },
   {
     id: "digital",
     titulo: "Plan Presencia Digital",
@@ -216,7 +256,9 @@ const planes: Plan[] = [
 
 function PlanCard({ plan, onAdquirir, isAdquirido, onVerAvance }: { plan: Plan; onAdquirir: (id: string) => void; isAdquirido: boolean; onVerAvance: () => void }) {
   const [expanded, setExpanded] = useState(false)
+  const [selectedOption, setSelectedOption] = useState(0)
   const Icon = plan.icon
+  const precioMostrado = plan.opciones ? plan.opciones[selectedOption].precio : plan.precio
 
   return (
     <div className={`overflow-hidden rounded-2xl shadow-sm ring-1 transition-all ${
@@ -245,13 +287,38 @@ function PlanCard({ plan, onAdquirir, isAdquirido, onVerAvance }: { plan: Plan; 
             <span className={`shrink-0 rounded-full px-4 py-1.5 text-base font-bold text-white ${
               isAdquirido ? "bg-success-500" : "bg-dark-teal-600"
             }`}>
-              {plan.precio}
+              {precioMostrado}
             </span>
           </div>
           <p className="mt-1 text-base text-platinum-500">{plan.descripcion}</p>
         </div>
       </div>
 
+
+      {/* Selector de cantidad — solo si tiene opciones */}
+      {plan.opciones && !isAdquirido && (
+        <div className="px-5 pb-4">
+          <p className="mb-2 text-sm font-semibold text-dark-teal-700">¿Cuántos flyers necesitas?</p>
+          <div className="flex gap-2">
+            {plan.opciones.map((op, i) => (
+              <button
+                key={op.cantidad}
+                onClick={() => setSelectedOption(i)}
+                className={`flex-1 rounded-xl py-3 text-center text-base font-bold transition-all ring-1 ${
+                  selectedOption === i
+                    ? "bg-dark-teal-600 text-white ring-dark-teal-600 shadow-sm"
+                    : "bg-white text-dark-teal-700 ring-dark-teal-200 hover:bg-dark-teal-50"
+                }`}
+              >
+                <span className="block text-lg">{op.cantidad}</span>
+                <span className={`block text-sm font-medium ${selectedOption === i ? "text-dark-teal-100" : "text-platinum-500"}`}>
+                  {op.precio}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
       {/* Botones de acción */}
       <div className="flex gap-3 px-5 pb-5">
         {/* Ver qué incluye — botón secundario */}
